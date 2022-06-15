@@ -8,7 +8,7 @@ const GetCandleData = () => {
   const {
     state: { data: selectedCoinHistoricalData },
   } = FetchData<HistoricalData>(
-    `candles?exchange=bithumb&interval=w1&baseId=ethereum&quoteId=${selectedCoin.coinName
+    `candles?exchange=kraken&interval=w1&baseId=ethereum&quoteId=${selectedCoin.coinName
       ?.replace(/ /g, "")
       .toLowerCase()}`,
     {
