@@ -39,6 +39,7 @@ export interface TableColumn {
   headerName: string;
   width: number;
   cellClassName?: (params: GridCellParams<string>) => string;
+  flex: number;
 }
 
 export interface HistoricalDataPoint {
@@ -49,4 +50,9 @@ export interface HistoricalDataPoint {
 export interface HistoricalData {
   data: HistoricalDataPoint[];
   timestamp: number;
+}
+
+export interface LoginObj {
+  userName: string;
+  password: string;
 }

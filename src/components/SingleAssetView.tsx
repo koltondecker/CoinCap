@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import GetCryptoCoins from "../util/GetCryptoCoins";
 import Chart from "react-apexcharts";
 import Navbar from "./navbar/Navbar";
+import CryptoCard from "./CryptoCard/CryptoCard";
+import { Grid, Skeleton } from "@mui/material";
+import { useParams } from "react-router";
+import FetchData from "../hooks/FetchData";
 
 // interface Random {
 //   close: string;
@@ -14,12 +18,18 @@ import Navbar from "./navbar/Navbar";
 
 const SingleAssetView = () => {
   const { selectedCoinHistoricalData } = GetCryptoCoins();
+  let selectedCoin = useParams();
+  const {
+    state: { data: coinData },
+  } = FetchData(`assets/${selectedCoin.coinName?.toLowerCase()}`);
+
   const [history, setHistory] = useState<any[]>();
+  const [coinDetails, setCoinDetails] = useState<any>();
+
   let options = {};
 
   useEffect(() => {
     if (selectedCoinHistoricalData) {
-      console.log(selectedCoinHistoricalData.data);
       let historyArr = [];
       historyArr.push({
         data: selectedCoinHistoricalData?.data.map((el: any) => {
@@ -37,6 +47,10 @@ const SingleAssetView = () => {
       setHistory(historyArr);
     }
   }, [selectedCoinHistoricalData]);
+
+  useEffect(() => {
+    setCoinDetails(coinData);
+  }, [coinData, selectedCoin]);
 
   options = {
     chart: {
@@ -59,17 +73,45 @@ const SingleAssetView = () => {
 
   return (
     <>
-      <Navbar search={false} />
-      <h1 style={{ textAlign: "center", fontSize: 50 }}>Bitcoin</h1>
-      <div id="chart"></div>
-      {history && (
-        <Chart
-          options={options}
-          series={history}
-          type="candlestick"
-          height={500}
-        />
-      )}
+      <Navbar />
+      <h1
+        style={{
+          textAlign: "center",
+          fontSize: 50,
+          color: "white",
+          marginTop: 30,
+        }}
+      >
+        Bitcoin
+      </h1>
+      <Grid container spacing={2}>
+        <Grid item xs={4} style={{ padding: 50 }}>
+          <CryptoCard coinDetails={coinDetails} />
+        </Grid>
+        <Grid item xs={8} style={{ padding: 50 }}>
+          <div
+            style={{
+              borderStyle: "light",
+              borderRadius: 10,
+              background: "#d6d2d2",
+            }}
+          >
+            {history ? (
+              <>
+                <div id="chart"></div>
+                <Chart
+                  options={options}
+                  series={history}
+                  type="candlestick"
+                  height={500}
+                />
+              </>
+            ) : (
+              <Skeleton variant="rectangular" height={500} animation="wave" />
+            )}
+          </div>
+        </Grid>
+      </Grid>
     </>
   );
 };

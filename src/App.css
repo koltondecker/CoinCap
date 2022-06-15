@@ -1,0 +1,138 @@
+.App {
+  text-align: center;
+  min-width: 100vw;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: rgb(255, 253, 253);
+  background-image: url("./assets/images/crypto.jpeg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+main {
+  flex: 1 0 auto;
+  min-width: 80vw;
+  min-height: 85vh;
+}
+
+.transparentBG,
+a.btn {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.no-shadows {
+  box-shadow: none !important;
+}
+
+.card {
+  background: rgba(233, 233, 233, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 10px;
+  outline: 2px solid white;
+}
+
+.form-control {
+  color: black;
+}
+
+::placeholder {
+  color: black;
+}
+
+.input-field > label {
+  color: black;
+}
+
+textarea {
+  height: 10vh;
+}
+
+.coin-name {
+  font-weight: bolder;
+}
+
+h1 {
+  font-size: 3.5rem !important;
+  font-family: "Maven Pro", sans-serif;
+}
+
+h3,
+h2,
+h4 {
+  font-family: "Maven Pro", sans-serif;
+}
+
+.btn {
+  background-color: #4bc7c8 !important;
+}
+
+.roundedbtn {
+  background-color: black !important;
+  border-radius: 16px;
+  margin-bottom: 1em;
+  height: 50px;
+  line-height: 50px;
+  width: auto;
+  font-size: 15px !important;
+  text-transform: none !important;
+}
+
+.link-btn {
+  text-transform: none !important;
+  height: 35px;
+  line-height: 35px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 600px) {
+  .roundedbtn {
+    background-color: black !important;
+    border-radius: 16px;
+    margin-bottom: 1em;
+    height: 30px;
+    line-height: 30px;
+    width: auto;
+    font-size: 15px !important;
+  }
+}
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-card {
+  text-align: center;
+}
+
+.card {
+  max-width: 50%;
+  margin: 3% auto;
+  opacity: 0.9;
+}
+
+.crypto-card-item {
+  font-size: 20;
+  padding: 10;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 992px) {
+  .card {
+    max-width: 90%;
+    margin: 3% auto;
+  }
+}

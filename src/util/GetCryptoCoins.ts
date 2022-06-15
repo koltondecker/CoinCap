@@ -1,11 +1,10 @@
-import type { CoinCapDataArray, HistoricalData } from "../types/assets";
+import type { CoinCapDataArray, HistoricalData } from "../types/types";
 import FetchData from "../hooks/FetchData";
 import { useParams } from "react-router-dom";
 import { calculateUsdValue } from "./conversions";
 
 const GetCryptoCoins = () => {
   const selectedCoin = useParams();
-  console.log(selectedCoin);
 
   const {
     state: { data: topCoinsData },

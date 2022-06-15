@@ -1,5 +1,5 @@
 import GetCryptoCoins from "../../util/GetCryptoCoins";
-import SearchAppBar from "../navbar/Navbar";
+import Navbar from "../navbar/Navbar";
 
 import CryptoTable from "../Table/CryptoTable";
 
@@ -8,8 +8,15 @@ const Dashboard = () => {
 
   return (
     <>
-      <SearchAppBar search={true} />
-      <CryptoTable lastCheckedAt={topCoins?.timestamp} topCoins={topCoins} />
+      <Navbar />
+      <h1 style={{ color: "white", textAlign: "center", marginTop: 20 }}>
+        Crypto Dashboard
+      </h1>
+      {/* <h3>
+        Last Checked at:{" "}
+        {topCoins?.timestamp ? new Date(topCoins?.timestamp * 1000) : ""}
+      </h3> */}
+      <CryptoTable topCoins={topCoins} />
     </>
   );
 };
