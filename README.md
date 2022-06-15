@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Crypto Land: Coin Cap API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+App Deployed at: https://koltondecker.github.io/CoinCap/
 
-## Available Scripts
+## What is this app?
 
-In the project directory, you can run:
+An app that allows a user to view top crypto coins on the market with their included stats and candlestick history. User can also add and remove coins from their wallet.
 
-### `npm start`
+## Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This app is built using React and utilizes a reusable component architecture.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Technologies utilized:
 
-### `npm test`
+- React
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Typescript
 
-### `npm run build`
+- Material UI
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Axios
+* ApexCharts
+* Jest
+* CryptoJS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Technologies to be used in future development:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Tailwind CSS
+- Express
+- Express-Session
+- Mongoose
+- Passport
 
-### `npm run eject`
+## Accomplished
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- ### Built out structure of app.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- ### User can 'login' which stores user information in local storage and hashes password.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- ### Implemented MUI Datagrid to display coin information on the dashboard.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- ### Table can be filtered by every column via ascending order, descending order, or by search.
 
-## Learn More
+- ### Build out page to view individual assets and their candlestick history data.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- ### User can buy coins of their choosing which adds coins to their user object and displays in their wallet.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ### User can view their account information, change their password.
 
-### Code Splitting
+- ### User can view their wallet which will display the coins they own, how much of each they own, current coin values, and current overall balance of wallet.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Screenshots
 
-### Analyzing the Bundle Size
+### Login
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Login](src/assets/images/Login.png)
 
-### Making a Progressive Web App
+### Dashboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Dashboard](src/assets/images/Dashboard.png)
 
-### Advanced Configuration
+### Bitcoin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Bitcoin](src/assets/images/Bitcoin.png)
 
-### Deployment
+### My Account
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![MyAccount](src/assets/images/MyAccount.png)
 
-### `npm run build` fails to minify
+## Future Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ### Add a page for users to sign up for an account which will be saved permanently.
+
+- ### Build out database and userContext to store user data including wallet transactions.
+
+- ### Allow user to receive notifications about changes in coin value, new coins, etc.
+
+- ### Implement ability to search for coins via the navbar and be linked to their individual page.
+
+- ### Build more testing components for app
+
+- ### Clean up UI to be more user friendly and better polished with organized class system.
