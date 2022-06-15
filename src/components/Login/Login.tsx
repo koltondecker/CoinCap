@@ -5,6 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import type { LoginObj } from "../../types/types";
 import { Container } from "@mui/system";
 import { Button, Card, Grid, Input } from "@mui/material";
+import CryptoJS from "crypto-js";
 
 const Login = () => {
   const [formObject, setFormObject] = useState<LoginObj>({
@@ -24,6 +25,9 @@ const Login = () => {
 
   function handleFormSubmit(event: any) {
     event.preventDefault();
+    let userObj = { ...formObject };
+    userObj.password = CryptoJS.SHA1(formObject.password).toString();
+    window.localStorage.setItem("user", JSON.stringify(userObj));
     navigate("/dashboard");
     // if (formObject.userName && formObject.password) {
     //     axios.post("/api/users/login", {

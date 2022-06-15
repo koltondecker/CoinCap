@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import GetCryptoCoins from "../util/GetCryptoCoins";
 import Chart from "react-apexcharts";
 import Navbar from "./navbar/Navbar";
 import CryptoCard from "./CryptoCard/CryptoCard";
-import { Grid, Skeleton } from "@mui/material";
+import { Box, Grid, Skeleton } from "@mui/material";
 import { useParams } from "react-router";
 import FetchData from "../hooks/FetchData";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import GetCandleData from "../util/GetCandleData";
 
 // interface Random {
 //   close: string;
@@ -17,11 +18,13 @@ import FetchData from "../hooks/FetchData";
 // }
 
 const SingleAssetView = () => {
-  const { selectedCoinHistoricalData } = GetCryptoCoins();
+  const { selectedCoinHistoricalData } = GetCandleData();
   let selectedCoin = useParams();
   const {
     state: { data: coinData },
-  } = FetchData(`assets/${selectedCoin.coinName?.toLowerCase()}`);
+  } = FetchData(
+    `assets/${selectedCoin.coinName?.replace(/ /g, "").toLowerCase()}`
+  );
 
   const [history, setHistory] = useState<any[]>();
   const [coinDetails, setCoinDetails] = useState<any>();
@@ -36,10 +39,10 @@ const SingleAssetView = () => {
           return {
             x: new Date(el.period),
             y: [
-              parseFloat(el.close),
+              parseFloat(el.open),
               parseFloat(el.high),
               parseFloat(el.low),
-              parseFloat(el.open),
+              parseFloat(el.close),
             ],
           };
         }),
@@ -82,7 +85,7 @@ const SingleAssetView = () => {
           marginTop: 30,
         }}
       >
-        Bitcoin
+        {coinDetails && coinDetails.data.name}
       </h1>
       <Grid container spacing={2}>
         <Grid item xs={4} style={{ padding: 50 }}>
@@ -96,7 +99,12 @@ const SingleAssetView = () => {
               background: "#d6d2d2",
             }}
           >
-            {history ? (
+            {history && !history[0].data.length ? (
+              <Box height={500} style={{ textAlign: "center" }}>
+                <SentimentVeryDissatisfiedIcon fontSize="large" />
+                "Oh no! There seems to be no candlestick data available"
+              </Box>
+            ) : history ? (
               <>
                 <div id="chart"></div>
                 <Chart

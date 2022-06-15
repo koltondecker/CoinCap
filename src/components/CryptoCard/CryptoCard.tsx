@@ -1,14 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { formatToPercent, formatToUSD } from "../../util/formatters";
+import { formatToUSD } from "../../util/formatters";
+import { IconButton, Input, Snackbar } from "@mui/material";
+import type { CoinCapData } from "../../types/types";
+import CloseIcon from "@mui/icons-material/Close";
 
-const CryptoCard = ({ coinDetails }: any) => {
+interface CryptoCardProps {
+  coinDetails: CoinCapData;
+}
+
+const CryptoCard = ({ coinDetails }: CryptoCardProps) => {
   if (coinDetails) console.log(coinDetails);
+  const [coinPurchase, setCoinPurchase] = useState<string>("");
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const purchaseCoin = () => {
+    if (!window.localStorage.getItem("user")) return;
+    let userJson = window.localStorage.getItem("user");
+    if (!userJson) return;
+    let user: any = JSON.parse(userJson);
+    if (!user.Wallet) user.Wallet = [];
+    if (
+      user.Wallet.filter((o: any) => {
+        return o.coin === coinDetails.data.symbol;
+      }).length > 0
+    ) {
+      user.Wallet = user.Wallet.map((o: any) => {
+        if (o.coin === coinDetails.data.symbol)
+          return {
+            coin: coinDetails.data.symbol,
+            amount: parseFloat(o.amount) + parseFloat(coinPurchase),
+          };
+      });
+    } else {
+      user.Wallet.push({ coin: coinDetails.data.symbol, amount: coinPurchase });
+    }
+    window.localStorage.setItem("user", JSON.stringify(user));
+    setOpenSnackbar(true);
+    setCoinPurchase("");
+  };
   return (
     <>
       {coinDetails && (
@@ -30,20 +65,20 @@ const CryptoCard = ({ coinDetails }: any) => {
                   asset
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant="body1"
                   style={{ fontSize: 20, padding: 10 }}
                 >
                   Current Price: ${formatToUSD(coinDetails.data.priceUsd)}
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant="body1"
                   style={{ fontSize: 20, padding: 10 }}
                 >
                   Current Market Cap: $
                   {formatToUSD(coinDetails.data.marketCapUsd)}
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant="body1"
                   style={{ fontSize: 20, padding: 10 }}
                 >
                   Current Supply: {formatToUSD(coinDetails.data.supply)} coins
@@ -51,7 +86,7 @@ const CryptoCard = ({ coinDetails }: any) => {
                 {coinDetails.data.maxSupply && (
                   <>
                     <Typography
-                      variant="body2"
+                      variant="body1"
                       style={{ fontSize: 20, padding: 10 }}
                     >
                       Max Supply: {formatToUSD(coinDetails.data.maxSupply)}{" "}
@@ -71,6 +106,25 @@ const CryptoCard = ({ coinDetails }: any) => {
                     </Typography>
                   </>
                 )}
+                <Typography
+                  variant="body1"
+                  style={{ fontSize: 20, padding: 10 }}
+                >
+                  Buy {coinDetails.data.symbol}:{" "}
+                  <Input
+                    type="number"
+                    onChange={(e: any) => setCoinPurchase(e.target.value)}
+                  ></Input>
+                  <Button
+                    style={{ borderRadius: 10, border: "solid" }}
+                    type="submit"
+                    onClick={() => {
+                      purchaseCoin();
+                    }}
+                  >
+                    Buy
+                  </Button>
+                </Typography>
               </CardContent>
               <CardActions style={{ justifyContent: "center" }}>
                 <Button
@@ -83,6 +137,26 @@ const CryptoCard = ({ coinDetails }: any) => {
               </CardActions>
             </div>
           </Card>
+          <Snackbar
+            open={openSnackbar}
+            autoHideDuration={3000}
+            onClose={() => setOpenSnackbar(false)}
+            message={`Purchase of ${coinDetails.data.name} succesful`}
+            action={
+              <>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={() => {
+                    setOpenSnackbar(false);
+                  }}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </>
+            }
+          />
         </Box>
       )}
     </>

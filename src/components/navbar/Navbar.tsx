@@ -102,7 +102,7 @@ export default function Navbar() {
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem> */}
       <MenuItem onClick={() => navigate("/account")}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={() => navigate("/")}>Log Out</MenuItem>
     </Menu>
   );
 

@@ -13,6 +13,7 @@ export interface Asset {
   changePercent24Hr: string;
   vwap24Hr: string;
   explorer: string;
+  amountOwned?: number;
 }
 
 export interface CoinCapData {

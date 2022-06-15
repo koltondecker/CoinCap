@@ -16,6 +16,7 @@ interface CryptoTableProps {
 }
 
 const CryptoTable = ({ topCoins }: CryptoTableProps) => {
+  console.log(topCoins);
   const [dataRows, setDataRows] = useState<TableRow[]>([]);
   const [dataColumns, setDataColumns] = useState<TableColumn[]>([]);
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const CryptoTable = ({ topCoins }: CryptoTableProps) => {
       topCoins.data.map((asset: Asset, index: number) => {
         return {
           id: index,
+          coinId: asset.id,
           rank: asset.rank,
           coin: asset.name,
           symbol: asset.symbol,
@@ -62,7 +64,7 @@ const CryptoTable = ({ topCoins }: CryptoTableProps) => {
 
   const handleSelectedRow = (selection: any) => {
     console.log(selection);
-    navigate(`/${selection.coin}`);
+    navigate(`/${selection.coinId}`);
   };
 
   return (
