@@ -68,7 +68,7 @@ const AccountInfoCard = () => {
                 <Typography variant="body2">
                   Current password:{" "}
                   <Input
-                    onChange={(e: any) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setCurrentPassword(e.target.value);
                     }}
                   ></Input>
@@ -76,7 +76,7 @@ const AccountInfoCard = () => {
                 <Typography variant="body2">
                   New password:{" "}
                   <Input
-                    onChange={(e: any) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setUpdatedPassword(e.target.value);
                     }}
                   ></Input>

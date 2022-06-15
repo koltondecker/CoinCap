@@ -17,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   //   const { dispatch } = useUserContext();
 
-  function handleInputChange(event: any) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
     setFormObject({ ...formObject, [name]: value });
@@ -25,35 +25,31 @@ const Login = () => {
 
   function handleFormSubmit(event: any) {
     event.preventDefault();
-    let userObj = { ...formObject };
-    userObj.password = CryptoJS.SHA1(formObject.password).toString();
-    window.localStorage.setItem("user", JSON.stringify(userObj));
-    navigate("/dashboard");
-    // if (formObject.userName && formObject.password) {
-    //     axios.post("/api/users/login", {
-    //         username: formObject.userName,
-    //         password: formObject.password,
-    //       });
-    //     .then(async (res) => {
-    //       setSuccess(true);
-    //       setFail(false);
-    //       dispatch({
-    //         type: "add",
-    //         id: res.data._id,
-    //         userName: res.data.userName,
-    //         firstName: res.data.name.firstName,
-    //         lastName: res.data.name.lastName,
-    //         memberOf: res.data.memberOf,
-    //         isAuthenticated: "true",
-    //       });
-    //       navigate("/");
-    //     })
-    //     .catch((err:) => {
-    //       setSuccess(false);
-    //       setFail(true);
-    //       console.log(err);
-    //     });
-    // }
+    // let userObj = { ...formObject };
+    // userObj.password = CryptoJS.SHA1(formObject.password).toString();
+    // window.localStorage.setItem("user", JSON.stringify(userObj));
+    // navigate("/dashboard");
+    if (formObject.userName && formObject.password) {
+      let userJson = window.localStorage.getItem("user");
+      if (!userJson) {
+        setSuccess(false);
+        setFail(true);
+        return;
+      }
+      let user = JSON.parse(userJson);
+      if (
+        user &&
+        (user.userName !== formObject.userName ||
+          CryptoJS.SHA1(user.password).toString() !== formObject.password)
+      ) {
+        setSuccess(false);
+        setFail(true);
+        return;
+      }
+      setSuccess(true);
+      setFail(false);
+      navigate("/Dashboard");
+    }
   }
 
   return (
