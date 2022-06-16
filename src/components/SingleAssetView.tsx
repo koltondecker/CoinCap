@@ -8,15 +8,6 @@ import FetchData from "../hooks/FetchData";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import GetCandleData from "../util/GetCandleData";
 
-// interface Random {
-//   close: string;
-//   open: string;
-//   high: string;
-//   low: string;
-//   period: number;
-//   volume: string;
-// }
-
 const SingleAssetView = () => {
   const { selectedCoinHistoricalData } = GetCandleData();
   let selectedCoin = useParams();
@@ -33,9 +24,10 @@ const SingleAssetView = () => {
 
   useEffect(() => {
     if (selectedCoinHistoricalData) {
+      console.log(selectedCoinHistoricalData);
       let historyArr = [];
       historyArr.push({
-        data: selectedCoinHistoricalData?.data.map((el: any) => {
+        data: selectedCoinHistoricalData?.data.map((el) => {
           return {
             x: new Date(el.period),
             y: [

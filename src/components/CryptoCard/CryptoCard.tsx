@@ -113,7 +113,9 @@ const CryptoCard = ({ coinDetails }: CryptoCardProps) => {
                   Buy {coinDetails.data.symbol}:{" "}
                   <Input
                     type="number"
-                    onChange={(e: any) => setCoinPurchase(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setCoinPurchase(e.target.value)
+                    }
                   ></Input>
                   <Button
                     style={{ borderRadius: 10, border: "solid" }}

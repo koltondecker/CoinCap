@@ -43,17 +43,28 @@ export interface TableColumn {
   flex: number;
 }
 
-export interface HistoricalDataPoint {
-  x: Date;
-  y: number[];
+interface CandlestickData {
+  close: string;
+  open: string;
+  high: string;
+  low: string;
+  period: number;
+  volume: string;
 }
 
 export interface HistoricalData {
-  data: HistoricalDataPoint[];
+  data: CandlestickData[];
   timestamp: number;
 }
 
 export interface LoginObj {
   userName: string;
   password: string;
+}
+
+export interface User {
+  userName: string;
+  password: string;
+  accountCreated: Date;
+  Wallet?: Asset[];
 }
