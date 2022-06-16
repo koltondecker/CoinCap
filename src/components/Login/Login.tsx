@@ -40,7 +40,7 @@ const Login = () => {
       if (
         user &&
         (user.userName !== formObject.userName ||
-          CryptoJS.SHA1(user.password).toString() !== formObject.password)
+          CryptoJS.SHA1(formObject.password).toString() !== user.password)
       ) {
         setSuccess(false);
         setFail(true);

@@ -63,7 +63,7 @@ const Signup = () => {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <Link to="/login">Already have an account? Log in here</Link>
+            <Link to="/">Already have an account? Log in here</Link>
             {success && <div> Success! Redirecting to Dashboard.</div>}
           </Grid>
         </Grid>
