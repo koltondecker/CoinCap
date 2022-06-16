@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import API from "../utils/API";
-// import { useUserContext } from "../utils/userContext";
 import { useNavigate, Link } from "react-router-dom";
 import type { LoginObj } from "../../types/types";
 import { Container } from "@mui/system";
@@ -15,7 +13,6 @@ const Login = () => {
   const [success, setSuccess] = useState(true);
   const [fail, setFail] = useState(true);
   const navigate = useNavigate();
-  //   const { dispatch } = useUserContext();
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -25,10 +22,6 @@ const Login = () => {
 
   function handleFormSubmit(event: any) {
     event.preventDefault();
-    // let userObj = { ...formObject };
-    // userObj.password = CryptoJS.SHA1(formObject.password).toString();
-    // window.localStorage.setItem("user", JSON.stringify(userObj));
-    // navigate("/dashboard");
     if (formObject.userName && formObject.password) {
       let userJson = window.localStorage.getItem("user");
       if (!userJson) {
