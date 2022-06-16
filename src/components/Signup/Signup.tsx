@@ -1,13 +1,15 @@
 import { Button, Card, Container, Grid, Input } from "@mui/material";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginObj } from "../../types/types";
+import { User } from "../../types/types";
 import CryptoJS from "crypto-js";
 
 const Signup = () => {
-  const [formObject, setFormObject] = useState<LoginObj>({
+  const [formObject, setFormObject] = useState<User>({
     userName: "",
     password: "",
+    accountCreated: new Date(),
+    Wallet: [],
   });
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
@@ -20,7 +22,9 @@ const Signup = () => {
   const handleFormSubmit = (event: any) => {
     event.preventDefault();
     if (formObject.userName && formObject.password) {
+      let today = new Date();
       let userObj = { ...formObject };
+      userObj.accountCreated = today;
       userObj.password = CryptoJS.SHA1(formObject.password).toString();
       window.localStorage.setItem("user", JSON.stringify(userObj));
       setSuccess(true);

@@ -65,5 +65,6 @@ export interface LoginObj {
 export interface User {
   userName: string;
   password: string;
+  accountCreated: Date;
   Wallet?: Asset[];
 }
