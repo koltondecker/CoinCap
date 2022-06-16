@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/CoinCap/static/css/main.53bfdf19.css",
+    "main.js": "/CoinCap/static/js/main.7eeb5568.js",
+    "static/media/crypto.jpeg": "/CoinCap/static/media/crypto.c0ba0766e78e76522c0f.jpeg",
+    "index.html": "/CoinCap/index.html",
+    "main.53bfdf19.css.map": "/CoinCap/static/css/main.53bfdf19.css.map",
+    "main.7eeb5568.js.map": "/CoinCap/static/js/main.7eeb5568.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.53bfdf19.css",
+    "static/js/main.7eeb5568.js"
+  ]
+}
